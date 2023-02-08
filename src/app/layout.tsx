@@ -1,18 +1,30 @@
-import './globals.css'
+import { ReactNode } from 'react'
+import SupabaseListener from '../components/supabase-listener'
+import SupabaseProvider from '../components/supabase-provider'
+import { createClient } from '../utils/supabase-server'
+import { NavBarr } from '@/components'
+import './globals.scss'
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+// do not cache this layout
+export const revalidate = 0
+
+export default async function RootLayout ({ children }: { children: ReactNode }) {
+  const supabase = createClient()
+
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
+
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
+    <html lang='en'>
       <head />
-      <body>{children}</body>
+      <body>
+        <SupabaseProvider>
+          <SupabaseListener serverAccessToken={session?.access_token} />
+          <NavBarr />
+          {children}
+        </SupabaseProvider>
+      </body>
     </html>
   )
 }
