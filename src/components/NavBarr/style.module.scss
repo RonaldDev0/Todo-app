@@ -1,6 +1,18 @@
 .container {
-  width: 100%;
   display: flex;
-  justify-content: center;
-  gap: 20px;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 1px solid gray;
+  height: 50px;
+}
+
+.link {
+  text-decoration: none;
+  color: white;
+  font-size: 25px;
+  transition: all .2s;
+}
+
+.link:hover {
+  color: cyan;
 }

@@ -1,6 +1,7 @@
 'use client'
 
-import { useSupabase } from '@/components/supabase-provider'
+import { useSupabase } from '@/components/supabaseProvider'
+import style from './style.module.scss'
 
 // Supabase auth needs to be triggered client-side
 export default function Login () {
@@ -12,14 +13,12 @@ export default function Login () {
     })
   }
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut()
-  }
+  const handleLogout = async () => { await supabase.auth.signOut() }
 
   return (
-    <>
-      <button onClick={handleGitHubLogin}>GitHub Login</button>
-      <button onClick={handleLogout}>Logout</button>
-    </>
+    <div className={style.container}>
+      <button onClick={handleGitHubLogin} className={style.login}>GitHub Login</button>
+      <button onClick={handleLogout} className={style.logout}>Logout</button>
+    </div>
   )
 }

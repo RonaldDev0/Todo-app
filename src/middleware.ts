@@ -10,11 +10,14 @@ export async function middleware (req: NextRequest) {
   const supabase = createMiddlewareSupabaseClient<Database>({ req, res })
 
   const { data: { session } }: any = await supabase.auth.getSession()
+  // console.log('session: ', session)
 
-  console.log('session:', session)
-
-  if (req.nextUrl.pathname.endsWith('/protected-route') && session?.user.role !== 'authenticated') {
+  if (req.nextUrl.pathname.endsWith('/') && session?.user.role !== 'authenticated') {
     return NextResponse.redirect(new URL('/login', req.url))
+  }
+
+  if (req.nextUrl.pathname.endsWith('/login') && session?.user.role === 'authenticated') {
+    return NextResponse.redirect(new URL('/', req.url))
   }
 
   return res
