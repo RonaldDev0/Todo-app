@@ -1,7 +1,13 @@
-export default function TaskList () {
+import { supabase } from '@/utils'
+import { CardTask } from '@/components'
+
+export default async function TaskList () {
+  // Read all todos
+  const { data: todos } = await supabase.from('todos').select('*')
+
   return (
     <div>
-      <h1>This is a TaskList</h1>
+      {todos?.map((todo) => <CardTask key={todo.id} todo={todo} />)}
     </div>
   )
 }

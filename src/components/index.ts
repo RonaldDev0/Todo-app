@@ -1,3 +1,4 @@
+export { default as CardTask } from './CardTask/page'
 export { default as NavBarr } from './NavBarr/page'
 export { default as TaskForm } from './TaskForm/page'
 export { default as TaskList } from './TaskList/page'
