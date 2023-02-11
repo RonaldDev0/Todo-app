@@ -23,7 +23,7 @@ export default function TaskForm () {
   )
 }
 
-export const addTodo = async (taskName: string) => {
+const addTodo = async (taskName: string) => {
   const { data: { session: { user: { id } } } }: any = await supabase.auth.getSession()
   const send = await supabase.from('todos').insert([{ user_id: id, task: taskName }])
   return send
