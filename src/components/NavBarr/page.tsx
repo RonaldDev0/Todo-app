@@ -1,11 +1,13 @@
-import Link from 'next/link'
+import Image from 'next/image'
 import style from './style.module.scss'
 
 export default function NavBarr () {
   return (
     <div className={style.container}>
-      <h1>Todo App</h1>
-      <Link href='/login' className={style.link}>Login</Link>
+      <div className={style.logo}>
+        <h1>Todo App</h1>
+        <Image src='/checklist.png' width='25' height='25' alt='logo' />
+      </div>
     </div>
   )
 }

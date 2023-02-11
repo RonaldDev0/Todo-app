@@ -3,6 +3,7 @@
   justify-content: space-around;
   align-items: center;
   height: 50px;
+  margin-top: 30px;
 }
 
 .link {
@@ -14,4 +15,8 @@
 
 .link:hover {
   color: #40bf86;
+}
+
+.logo {
+  display: flex;
 }

@@ -1,6 +1,8 @@
 'use client'
 
 import { supabase } from '@/utils'
+import Image from 'next/image'
+import style from './style.module.scss'
 
 // interface Todo {
 //   id: number,
@@ -12,9 +14,12 @@ import { supabase } from '@/utils'
 
 export default function CardTask ({ todo }: any) {
   return (
-    <div>
-      <p>{todo.task}</p>
-      <input type='checkbox' defaultChecked={todo.is_complete} onChange={() => updateTodo(todo)} />
+    <div className={style.container}>
+      <input type='checkbox' defaultChecked={todo.is_complete} onChange={() => updateTodo(todo)} className={style.checkbox} />
+      <div className={style.text}>{todo.task}</div>
+      <button className={style.trash}>
+        <Image src='/trash.png ' width='25' height='25' alt='Delete Icon' />
+      </button>
     </div>
   )
 }
