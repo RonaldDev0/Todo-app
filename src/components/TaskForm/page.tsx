@@ -9,7 +9,7 @@ export default function TaskForm ({ setTodos, todos, userId }: any) {
 
   const HandleSubmit = async (e: any) => {
     e.preventDefault()
-    setTodos([...todos, { task: taskName }])
+    setTodos([...todos, { user_id: userId, task: taskName, is_complete: false }])
     addTodo(taskName, userId)
     setTask('')
   }

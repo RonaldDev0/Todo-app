@@ -4,14 +4,6 @@ import { supabase } from '@/utils'
 import Image from 'next/image'
 import style from './style.module.scss'
 
-// interface Todo {
-//   id: number,
-//   user_id: string,
-//   task: string,
-//   is_complete: boolean,
-//   inserted_at: string
-// }
-
 export default function CardTask ({ todo, todos, setTodos }: any) {
   return (
     <div className={style.container}>
