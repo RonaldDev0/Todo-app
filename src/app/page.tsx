@@ -19,7 +19,7 @@ export default function HomePage () {
   return (
     <div>
       <TaskForm setTodos={setTodos} todos={todos} />
-      <TaskList todos={todos} />
+      <TaskList setTodos={setTodos} todos={todos} />
     </div>
   )
 }
