@@ -4,13 +4,13 @@ import { supabase } from '@/utils'
 import { useState } from 'react'
 import style from './style.module.scss'
 
-export default function TaskForm ({ setTodos, todos }: any) {
+export default function TaskForm ({ setTodos, todos, userId }: any) {
   const [taskName, setTask] = useState<string>('')
 
   const HandleSubmit = async (e: any) => {
     e.preventDefault()
     setTodos([...todos, { task: taskName }])
-    addTodo(taskName)
+    addTodo(taskName, userId)
     setTask('')
   }
 
@@ -24,8 +24,7 @@ export default function TaskForm ({ setTodos, todos }: any) {
   )
 }
 
-const addTodo = async (taskName: string) => {
-  const { data: { session: { user: { id } } } }: any = await supabase.auth.getSession()
+const addTodo = async (taskName: string, id: any) => {
   const send = await supabase.from('todos').insert([{ user_id: id, task: taskName }])
   return send
 }
