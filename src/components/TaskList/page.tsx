@@ -9,5 +9,3 @@ export default function TaskList ({ todos, setTodos, userId }: any) {
     </div>
   )
 }
-
-// The filter not job correctly
