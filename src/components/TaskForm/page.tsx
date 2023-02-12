@@ -4,11 +4,12 @@ import { supabase } from '@/utils'
 import { useState } from 'react'
 import style from './style.module.scss'
 
-export default function TaskForm () {
+export default function TaskForm ({ setTodos, todos }: any) {
   const [taskName, setTask] = useState<string>('')
 
   const HandleSubmit = async (e: any) => {
     e.preventDefault()
+    setTodos([...todos, { task: taskName }])
     addTodo(taskName)
     setTask('')
   }
