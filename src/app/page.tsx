@@ -1,7 +1,6 @@
 'use client'
 import { supabase } from '@/utils'
 import { useState, useEffect } from 'react'
-
 import { TaskForm, TaskList } from '@/components'
 
 export default function HomePage () {

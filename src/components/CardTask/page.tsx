@@ -8,9 +8,9 @@ export default function CardTask ({ todo, todos, setTodos }: any) {
   return (
     <div className={style.container}>
       <input type='checkbox' defaultChecked={todo.is_complete} onChange={() => updateTodo(todo)} className={style.checkbox} />
-      <div className={style.text}>{todo.task}</div>
+      <label className={style.text}>{todo.task}</label>
       <button className={style.trash} onClick={() => deleteTodo(todo, todos, setTodos)}>
-        <Image src='/trash.png ' width='25' height='25' alt='Delete Icon' />
+        <Image src='https://i.imgur.com/mYTRfLY.png' width='25' height='25' alt='Delete Icon' />
       </button>
     </div>
   )

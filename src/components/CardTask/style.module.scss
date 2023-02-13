@@ -10,11 +10,26 @@
 }
 
 .checkbox {
-  border: 1px solid red;
   width: 20px;
   height: 20px;
   cursor: pointer;
   margin: 5px;
+  border-radius: 3px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid gray;
+}
+
+.checkbox:checked {
+  border: none;
+  background-image: url('https://i.imgur.com/qBq2VNh.png');
+  width: 24px;
+  height: 25px;
+}
+
+.checkbox:checked + .text {
+  text-decoration: line-through;
+  color: rgb(155, 155, 155);
 }
 
 .text {
@@ -22,6 +37,7 @@
   word-wrap: break-word;
   margin-top: 5px;
   margin-bottom: 5px;
+  font-size: 20px;
 }
 
 .trash {
