@@ -7,12 +7,7 @@ import style from './style.module.scss'
 export default function Login () {
   const { supabase }: any = useSupabase()
 
-  const handleGitHubLogin = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: 'github'
-    })
-  }
-
+  const handleGitHubLogin = async () => { await supabase.auth.signInWithOAuth({ provider: 'github' }) }
   const handleLogout = async () => { await supabase.auth.signOut() }
 
   return (

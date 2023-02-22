@@ -5,7 +5,7 @@ export default function TaskList ({ todos, setTodos }: any) {
   const list = todos?.map((todo: any, index: number) => <CardTask key={todo.id ? todo.id : index} todo={todo} todos={todos} setTodos={setTodos} />)
   return (
     <div className={style.container}>
-      {list.length === 0 ? <h3>You don't have to do</h3> : list}
+      {list ? <h3>You don't have to do</h3> : list}
     </div>
   )
 }
