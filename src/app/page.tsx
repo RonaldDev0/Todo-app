@@ -9,20 +9,20 @@ export default function HomePage () {
 
   useEffect(() => {
     const getData = async () => {
-      // Filter & Read all todos
+      // Read all todos
       const { data } = await supabase.from('todos').select('*')
-      setTodos(data?.filter((todo :any) => todo.user_id === userId).sort((a:any, b:any) => a.id - b.id))
+      setTodos(data)
 
       const { data: { session: { user: { id } } } }: any = await supabase.auth.getSession()
       setUserId(id)
     }
     getData()
-  }, [userId])
+  }, [])
 
   return (
     <div>
       <TaskForm setTodos={setTodos} todos={todos} userId={userId} />
-      <TaskList setTodos={setTodos} todos={todos} />
+      <TaskList setTodos={setTodos} todos={todos} userId={userId} />
     </div>
   )
 }
