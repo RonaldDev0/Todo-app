@@ -24,4 +24,7 @@ export default function TaskForm ({ setTodos, todos, userId }: any) {
   )
 }
 
-const addTodo = async (taskName: string, id: any) => await supabase.from('todos').insert([{ user_id: id, task: taskName }])
+const addTodo = async (taskName: string, id: any) => {
+  const send = await supabase.from('todos').insert([{ user_id: id, task: taskName }])
+  return send
+}
