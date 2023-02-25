@@ -21,9 +21,9 @@ export default function HomePage () {
       { event: '*', schema: 'public', table: 'todos' },
       (payload: any) => {
         setTodos([...todos, payload.new])
-        console.log(payload)
       }
     )
+    .subscribe()
 
   return (
     <div>
