@@ -15,13 +15,15 @@ export default function HomePage () {
     getData()
   }, [])
 
-  supabase.channel('todos').on(
-    'postgres_changes',
-    { event: '*', schema: 'public', table: 'todos' },
-    (payload: any) => {
-      setTodos([...todos, payload.new])
-    }
-  )
+  supabase.channel('todos')
+    .on(
+      'postgres_changes',
+      { event: '*', schema: 'public', table: 'todos' },
+      (payload: any) => {
+        setTodos([...todos, payload.new])
+        console.log(payload)
+      }
+    )
 
   return (
     <div>
