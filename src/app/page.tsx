@@ -9,20 +9,34 @@ export default function HomePage () {
 
   useEffect(() => {
     const getData = async () => {
-      // Read all todos
-      const { data } = await supabase.from('todos').select('*')
-      setTodos(data)
-
-      const { data: { session: { user: { id } } } }: any = await supabase.auth.getSession()
-      setUserId(id)
+      setTodos(await getTodos())
+      setUserId(await getId())
     }
     getData()
   }, [])
 
+  supabase.channel('todos').on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'todos' },
+    (payload: any) => {
+      setTodos([...todos, payload.new])
+    }
+  )
+
   return (
     <div>
-      <TaskForm setTodos={setTodos} todos={todos} userId={userId} />
-      <TaskList setTodos={setTodos} todos={todos} userId={userId} />
+      <TaskForm userId={userId} />
+      <TaskList todos={todos} userId={userId} />
     </div>
   )
+}
+
+const getTodos = async () => {
+  const { data } = await supabase.from('todos').select('*')
+  return data
+}
+
+const getId = async () => {
+  const { data: { session: { user: { id } } } }: any = await supabase.auth.getSession()
+  return id
 }
