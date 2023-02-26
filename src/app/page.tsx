@@ -19,8 +19,9 @@ export default function HomePage () {
     .on(
       'postgres_changes',
       { event: '*', schema: 'public', table: 'todos' },
-      (payload: any) => {
-        const NewList = todos?.filter((item: any) => item.id !== payload.new.id)
+      async (payload: any) => {
+        const NewTodos = await getTodos()
+        const NewList: any = NewTodos?.filter((item: any) => item.id !== payload.new.id)
         setTodos([...NewList, payload.new])
       }
     )
