@@ -1,5 +1,3 @@
-'use client'
-
 import { supabase } from '@/utils'
 import Image from 'next/image'
 import style from './style.module.scss'
