@@ -20,7 +20,7 @@ export default function HomePage () {
       'postgres_changes',
       { event: '*', schema: 'public', table: 'todos' },
       (payload: any) => {
-        const NewList = todos?.filter((item: any) => item !== payload.new)
+        const NewList = todos?.filter((item: any) => item.id !== payload.new.id)
         setTodos([...NewList, payload.new])
       }
     )
